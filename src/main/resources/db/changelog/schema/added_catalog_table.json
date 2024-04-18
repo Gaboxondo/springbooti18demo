@@ -1,0 +1,57 @@
+{
+    "databaseChangeLog": [{
+        "changeSet": {
+            "id": "1",
+            "author": "ggarrido",
+            "changes": [
+                {
+                    "createTable": {
+                        "tableName": "catalog",
+                        "columns": [
+                            {
+                                "column": {
+                                    "name": "code",
+                                    "type": "varchar(50)",
+                                    "constraints": {
+                                        "primaryKey": true,
+                                        "primaryKeyName": "PK_CATALOGS",
+                                        "nullable": false
+                                    }
+                                }
+                            },
+                            {
+                                "column": {
+                                    "name": "type",
+                                    "type": "varchar(100)",
+                                    "constraints": {
+                                        "primaryKey": true,
+                                        "primaryKeyName": "PK_CATALOGS",
+                                        "nullable": false
+                                    }
+                                }
+                            },
+                            {
+                                "column": {
+                                    "name": "description_en",
+                                    "type": "varchar(1000)"
+                                }
+                            },
+                            {
+                                "column": {
+                                    "name": "description_es",
+                                    "type": "varchar(1000)"
+                                }
+                            },
+                            {
+                                "column": {
+                                    "name": "description_de",
+                                    "type": "varchar(1000)"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }]
+}

@@ -1,0 +1,14 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "db/changelog/schema/added_product_table.json"
+      }
+    },
+    {
+      "include": {
+        "file": "db/changelog/schema/added_catalog_table.json"
+      }
+    }
+  ]
+}

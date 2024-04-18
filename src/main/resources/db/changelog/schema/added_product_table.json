@@ -1,0 +1,50 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "2",
+                "author": "ggarrido",
+                "changes": [
+                    {
+                        "createTable": {
+                            "tableName": "product",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "varchar(100)",
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "code",
+                                        "type": "varchar(20)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "cost",
+                                        "type": "double"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "brand",
+                                        "type": "varchar(100)"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
