@@ -15,7 +15,8 @@ public class ProductDbMapper {
         if(productSQL == null){
             return null;
         }
-        return new Product(productSQL.getId(), productSQL.getCode(), productSQL.getBrand(), productSQL.getCost() );
+        return new Product(productSQL.getId(), productSQL.getTypeCode(), productSQL.getBrand(), productSQL.getCost() ,
+            productSQL.getQualityCode() );
     }
 
     public List<Product> fromDbToDomain(List<ProductSQL> productSQL){

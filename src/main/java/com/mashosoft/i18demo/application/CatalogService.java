@@ -7,4 +7,6 @@ import java.util.List;
 public interface CatalogService {
 
     public List<Catalog> getcatalogsByTypes(String type);
+
+    public List<Catalog> getAll();
 }

@@ -21,7 +21,7 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "code",
+                                        "name": "type_code",
                                         "type": "varchar(20)",
                                         "constraints": {
                                             "nullable": false
@@ -38,6 +38,15 @@
                                     "column": {
                                         "name": "brand",
                                         "type": "varchar(100)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "quality_code",
+                                        "type": "varchar(20)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
                                     }
                                 }
                             ]

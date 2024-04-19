@@ -26,4 +26,11 @@ public class Catalog {
         Optional<Catalog> typeCode = catalogs.stream().filter( catalog -> catalog.getCode().equals( code ) ).findFirst();
         return typeCode.orElse( null );
     }
+
+    public static Catalog filterListByTypeAndCode(List<Catalog> catalogs,String type,String code){
+        Optional<Catalog> typeCode = catalogs.stream()
+            .filter( catalog -> catalog.getCode().equals( code ) && catalog.getType().equals( type ) )
+            .findFirst();
+        return typeCode.orElse( null );
+    }
 }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface CatalogRepository {
 
     List<Catalog> getcatalogFromDatabaseByTypes(String type);
+
+    List<Catalog> getAllFromDatabase();
 }

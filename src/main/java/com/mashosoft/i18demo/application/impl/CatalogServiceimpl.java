@@ -17,4 +17,8 @@ public class CatalogServiceimpl implements CatalogService {
     public List<Catalog> getcatalogsByTypes(String type){
         return catalogRepository.getcatalogFromDatabaseByTypes( type );
     }
+
+    public List<Catalog> getAll(){
+        return catalogRepository.getAllFromDatabase(  );
+    }
 }

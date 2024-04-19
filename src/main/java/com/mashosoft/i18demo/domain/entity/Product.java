@@ -11,9 +11,11 @@ public class Product {
 
     private String id;
 
-    private String code;
+    private String typeCode;
 
     private String brand;
 
     private Double cost;
+
+    private String qualityCode;
 }

@@ -24,7 +24,12 @@ public class CatalogRepositoryImpl implements CatalogRepository {
     @Override
     public List<Catalog> getcatalogFromDatabaseByTypes(String type) {
         List<CatalogSQL> catalogSQLS = productJpaRepository.findCatalogsByType( type );
-        List<Catalog> catalogs = catalogSQLS.stream().map( mapper::fromDbToDomain ).toList();
-        return catalogs;
+        return catalogSQLS.stream().map( mapper::fromDbToDomain ).toList();
+    }
+
+    @Override
+    public List<Catalog> getAllFromDatabase() {
+        List<CatalogSQL> catalogSQLS = productJpaRepository.findAll(  );
+        return catalogSQLS.stream().map( mapper::fromDbToDomain ).toList();
     }
 }

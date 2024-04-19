@@ -18,4 +18,6 @@ public class ProductDTO {
     private String brand;
 
     private Double cost;
+
+    private CatalogDTO quality;
 }

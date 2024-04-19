@@ -1,7 +1,6 @@
-package com.mashosoft.i18demo.interfaces.web.adapter.mapper;
+package com.mashosoft.i18demo.interfaces.web.adapter.impl.mapper;
 
 import com.mashosoft.i18demo.domain.entity.Product;
-import com.mashosoft.i18demo.interfaces.web.adapter.translator.DtoLiteralsFiller;
 import com.mashosoft.i18demo.interfaces.web.dto.CatalogDTO;
 import com.mashosoft.i18demo.interfaces.web.dto.ProductDTO;
 import lombok.AllArgsConstructor;
@@ -16,8 +15,8 @@ import java.util.stream.Collectors;
 public class ProductDtoMapper {
 
     public ProductDTO fromDomainToDTO(Product product){
-        return new ProductDTO(product.getId(),new CatalogDTO( product.getCode(), null), product.getBrand(),
-            product.getCost() ) ;
+        return new ProductDTO(product.getId(),new CatalogDTO( product.getTypeCode(), null), product.getBrand(),
+            product.getCost(),new CatalogDTO(product.getQualityCode(),null) ) ;
     }
 
     public List<ProductDTO> fromDomainToDTO(List<Product> products){

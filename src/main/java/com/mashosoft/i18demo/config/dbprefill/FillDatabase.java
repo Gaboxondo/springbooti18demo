@@ -17,15 +17,19 @@ public class FillDatabase implements CommandLineRunner {
     private final ProductJpaRepository productJpaRepository;
 
     @Override
-    public void run(String... args) throws Exception {
-        CatalogSQL productTypeMop = new CatalogSQL(new CatalogIdSQL("M","productType"),"Mop","Fregona","Mopp" );
-        CatalogSQL productTypeBroom = new CatalogSQL(new CatalogIdSQL("B","productType"),"Broom","Escoba","Besen" );
+    public void run(String... args) {
+        CatalogSQL productTypeMop = new CatalogSQL(new CatalogIdSQL("M","PRODUCT_TYPE"),"Mop","Fregona","Mopp" );
+        CatalogSQL productTypeBroom = new CatalogSQL(new CatalogIdSQL("B","PRODUCT_TYPE"),"Broom","Escoba","Besen" );
+        CatalogSQL qualityGood = new CatalogSQL(new CatalogIdSQL("A","QUALITY"),"Good quality","Buena calidad","Gute Qualität" );
+        CatalogSQL qualityBad = new CatalogSQL(new CatalogIdSQL("B","QUALITY"),"Normal quality","Calidad standard","Normale Qualität" );
         catalogJpaRepository.save( productTypeMop );
         catalogJpaRepository.save( productTypeBroom );
+        catalogJpaRepository.save( qualityGood );
+        catalogJpaRepository.save( qualityBad );
 
-        ProductSQL mopHousify = new ProductSQL("abc123","M","Housify",10.5 );
-        ProductSQL mopMyHouse = new ProductSQL("abc1234","M","My House",14.10 );
-        ProductSQL broom = new ProductSQL("dfg456","B","Housify",15.25 );
+        ProductSQL mopHousify = new ProductSQL("abc123","M","Housify",10.5,"A" );
+        ProductSQL mopMyHouse = new ProductSQL("abc1234","M","My House",14.10 ,"A");
+        ProductSQL broom = new ProductSQL("dfg456","B","Housify",15.25 ,"B");
         productJpaRepository.save( mopHousify );
         productJpaRepository.save( mopMyHouse );
         productJpaRepository.save( broom );
