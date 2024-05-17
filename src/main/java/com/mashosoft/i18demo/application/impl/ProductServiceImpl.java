@@ -1,7 +1,7 @@
 package com.mashosoft.i18demo.application.impl;
 
 import com.mashosoft.i18demo.application.ProductService;
-import com.mashosoft.i18demo.config.exceptionHandling.model.exception.BussinessExceptionWithTranslation;
+import com.mashosoft.i18demo.config.exceptionHandling.model.exception.ControlledErrorExceptionWithTranslation;
 import com.mashosoft.i18demo.domain.entity.Product;
 import com.mashosoft.i18demo.domain.errorCodes.ErrorCodes;
 import com.mashosoft.i18demo.domain.repository.ProductRepository;
@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(String id){
         Product product = productRepository.getProductFromDatabaseById( id );
         if(product == null){
-            throw new BussinessExceptionWithTranslation( ErrorCodes.ID_NOT_FOUND,new Object[]{id});
+            throw new ControlledErrorExceptionWithTranslation( ErrorCodes.ID_NOT_FOUND,new Object[]{id});
         }
         return product;
     }
