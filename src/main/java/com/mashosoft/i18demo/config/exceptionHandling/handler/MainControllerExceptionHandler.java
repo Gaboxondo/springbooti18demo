@@ -45,6 +45,7 @@ public class MainControllerExceptionHandler {
         return new ControlledErrorResponse(ex.getErrorCode(),errorMessage,requestKey);
     }
 
+    //TODO: This error should be also translated but not done due to this is an example
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ControlledErrorResponse handleException(HttpRequestMethodNotSupportedException ex) {
@@ -55,6 +56,7 @@ public class MainControllerExceptionHandler {
         return new ControlledErrorResponse( "error." + appname + ".http.method.00",errorMessage,null );
     }
 
+    //TODO: This error should be also translated but not done due to this is an example
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ControlledErrorResponse handleException(HttpMessageNotReadableException ex) {
@@ -65,6 +67,7 @@ public class MainControllerExceptionHandler {
         return new ControlledErrorResponse( "error." + appname + ".httpBody.00",errorMessage,null);
     }
 
+    //TODO: This error should be also translated but not done due to this is an example
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ControlledErrorResponse handleException(MethodArgumentNotValidException ex) {
@@ -78,9 +81,7 @@ public class MainControllerExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ControlledErrorResponse handleException(Exception ex) {
         LOGGER.error( "context: ",ex );
-        if(appname == null || appname.isBlank()){
-            appname = "AppNameNotSet";
-        }
-        return new ControlledErrorResponse( "error." + appname + ".generic","Es ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support.", null);
+        String errorMessage = translator.translateCode( "error.generic",null );
+        return new ControlledErrorResponse( "error.generic",errorMessage, null);
     }
 }
