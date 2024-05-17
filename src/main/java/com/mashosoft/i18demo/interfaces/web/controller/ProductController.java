@@ -40,6 +40,10 @@ public class ProductController {
         value = "v1/{id}",
         produces = MediaType.APPLICATION_JSON_VALUE,
         method = RequestMethod.GET)
+    @Operation(description="Get one product by Id")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "500", content = @Content(schema = @Schema(implementation = ControlledErrorResponse.class)), description = OpenApiProperties.GENERIC_ERROR_DEF),
+        @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(implementation = ControlledErrorResponse.class)), description = OpenApiProperties.BAD_REQUEST_DEF)})
     @ResponseStatus(HttpStatus.OK)
     public ProductDTO getProductById(@PathVariable("id") String productId) {
         return productWebInterfaceAdapter.getProductById( productId );

@@ -3,8 +3,11 @@ package com.mashosoft.i18demo.config.exceptionHandling.handler;
 import com.mashosoft.i18demo.config.exceptionHandling.handler.model.ControlledErrorResponse;
 import com.mashosoft.i18demo.config.exceptionHandling.model.BaseExceptionWithTranslation;
 import com.mashosoft.i18demo.config.i18.Translator;
+import com.mashosoft.i18demo.interfaces.web.requestAspect.AspectConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -34,8 +37,12 @@ public class MainControllerExceptionHandler {
     @ExceptionHandler(BaseExceptionWithTranslation.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ControlledErrorResponse handleException(BaseExceptionWithTranslation ex) {
+        String requestKey = "No request";
+        if(StringUtils.isNoneEmpty( MDC.get( AspectConstants.REQUEST_KEY))){
+            requestKey = MDC.get( AspectConstants.REQUEST_KEY);
+        }
         String errorMessage = translator.translateCode( ex.getErrorCode(), ex.getParameters() );
-        return new ControlledErrorResponse(ex.getErrorCode(),errorMessage);
+        return new ControlledErrorResponse(ex.getErrorCode(),errorMessage,requestKey);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
@@ -45,7 +52,7 @@ public class MainControllerExceptionHandler {
         if(appname == null || appname.isBlank()){
             appname = "AppNameNotSet";
         }
-        return new ControlledErrorResponse( "uw.error." + appname + ".http.method.00",errorMessage );
+        return new ControlledErrorResponse( "error." + appname + ".http.method.00",errorMessage,null );
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -55,7 +62,7 @@ public class MainControllerExceptionHandler {
             appname = "AppNameNotSet";
         }
         String errorMessage = "Wrong Body in the request, please check the API definition";
-        return new ControlledErrorResponse( "uw.error." + appname + ".httpBody.00",errorMessage);
+        return new ControlledErrorResponse( "error." + appname + ".httpBody.00",errorMessage,null);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -64,7 +71,7 @@ public class MainControllerExceptionHandler {
         if(appname == null || appname.isBlank()){
             appname = "AppNameNotSet";
         }
-        return new ControlledErrorResponse( "uw.error." + appname + ".http.arguments.00", "Not Valid Argument " + ex.getParameter());
+        return new ControlledErrorResponse( "error." + appname + ".http.arguments.00", "Not Valid Argument " + ex.getParameter(), null);
     }
 
     @ExceptionHandler(Exception.class)
@@ -74,6 +81,6 @@ public class MainControllerExceptionHandler {
         if(appname == null || appname.isBlank()){
             appname = "AppNameNotSet";
         }
-        return new ControlledErrorResponse( "uw.error." + appname + ".generic","Es ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support.");
+        return new ControlledErrorResponse( "error." + appname + ".generic","Es ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support.", null);
     }
 }
